@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-void checkBound(int i, int j, int size);
+int checkBound(int i, int size);
+
 int main()
 {
     int size;
     int row;
     int col;
     int test;
-    checkBound(1,2,3);
     
     cout << "Please give an odd number between 3 and 15 for the size of the Magic Square."<<endl;
     cin >> size;
@@ -58,49 +58,26 @@ int main()
             ms[row][col] = i;
             row --;
             col ++;
-            
-            if (row < 0)
-            {
-                row = size - 1;
-            }
-            
-            if (col > (size - 1))
-            {
-                col = 0;
-            }
+            row = checkBound(row, size);
+            col = checkBound(col, size);
         }
         else
         {
             row ++;
-            if (row > (size - 1))
-            {
-                row = 0;
-            }
+            row = checkBound(row, size);
             
             row ++;
-            if (row > (size - 1))
-            {
-                row = 0;
-            }
+            row = checkBound(row, size);
+            
             col --;
-            if (col < 0)
-            {
-                col = size - 1;
-            }
+            col = checkBound(col, size);
             
             ms[row][col] = i;
             row --;
             col ++;
             
-            if (row < 0)
-            {
-                row = size - 1;
-            }
-            
-            if (col > (size - 1))
-            {
-                col = 0;
-            }
+            row = checkBound(row, size);
+            col = checkBound(col, size);
         }
     }
    
@@ -111,9 +88,42 @@ int main()
     {
         for (int j = 0 ; j < size; j++)
         {
-            cout<<ms[i][j] << " ";
+            cout<<ms[i][j] << "  ";
         }
         cout << "\n";
     }
+    
+    int sums[size];
+    int sum;
+    for (int i = 0; i < size; i++)
+    {
+        sum = 0;
+        for (int j = 0; j < size; j++)
+        {
+            sum += ms[i][j];
+        }
+        sums[i]= sum;
+    }
+    
+    cout << "Checking the sums of every row: ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << sums [i] << " ";
+    }
+}
+
+int checkBound(int i, int size)
+{
+    if (i < 0)
+    {
+        i = size - 1;
+    }
+            
+    if (i > (size - 1))
+    {
+        i = 0;
+    }
+    
+    return i;
 }
 
