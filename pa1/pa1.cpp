@@ -117,7 +117,3 @@ int main()
     }
 }
 
-void checkBound(int i, int j, int size)
-{
-    test = i;
-}
