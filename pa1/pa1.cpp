@@ -12,21 +12,23 @@ int main()
     
     cout << "Please give an odd number between 3 and 15 for the size of the Magic Square."<<endl;
     cin >> size;
-    bool check (false);
+    
     //while loop check if size is in bound
+    bool check (false);
     while (check == false)
     {
+        
         //check if size is in bound
         if (size < 3 || size > 15)
         {
-            cout<<"Input is outside of the bound, please try again."<<endl;
-            cin>> size;
+            cout <<"Input is outside of the bound, please try again."<<endl;
+            cin >> size;
         }
         //check if size is odd
         else if(size % 2 == 0)
         {
-            cout<<"Size must be an odd number, please try again."<<endl;
-            cin>> size;
+            cout <<"Size must be an odd number, please try again."<<endl;
+            cin >> size;
         }
         //if size is in bound and odd
         else
@@ -56,12 +58,12 @@ int main()
         if ( ms[row][col] == 0) //if the spot is empty 
         {
             ms[row][col] = i;
-            row --;
+            row --; //use up 1 right one, the Siamese method to calculate
             col ++;
-            row = checkBound(row, size);
-            col = checkBound(col, size);
+            row = checkBound(row, size); //use checkBound to check the positons if still in the array
+            col = checkBound(col, size); 
         }
-        else
+        else //if the spot is not empty
         {
             row ++;
             row = checkBound(row, size);
@@ -81,8 +83,7 @@ int main()
         }
     }
    
-    
-    
+    //out put Magic Square #1
     cout << "Magic Square #1 is:" << endl;
     for (int i = 0 ; i < size; i++)
     {
@@ -95,21 +96,60 @@ int main()
     
     int sums[size];
     int sum;
-    for (int i = 0; i < size; i++)
+    
+    //row calculation
+    for (int r = 0; r < size; r++)
     {
         sum = 0;
-        for (int j = 0; j < size; j++)
+        for (int c = 0; c < size; c++)
         {
-            sum += ms[i][j];
+            sum += ms[r][c];
         }
-        sums[i]= sum;
+        sums[r]= sum;
     }
     
-    cout << "Checking the sums of every row: ";
+    cout << "Checking the sums of every row:      ";
     for (int i = 0; i < size; i++)
     {
         cout << sums [i] << " ";
     }
+    cout << "\n";
+    
+    //column calculation
+    for (int c = 0; c < size; c++)
+    {
+        sum = 0;
+        for (int r = 0; r < size; r++)
+        {
+            sum += ms[r][c];
+        }
+        sums[c]= sum;
+    }
+    
+    cout << "Checking the sums of every column:   ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << sums [i] << " ";
+    }
+    cout << "\n";
+    
+    //diagnoal calculation
+    cout << "Checking the sums of every diagnoal: ";
+    sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        sum += ms[i][i];
+    }
+    cout << sum << " ";
+    
+    sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        int j = size - 1 - i;
+            sum += ms[i][j];
+        
+    }
+    cout << sum << endl;
 }
 
 int checkBound(int i, int size)
