@@ -2,13 +2,15 @@
 #include <cmath>
 using namespace std;
 int checkBound(int i, int size);
+const int maxSize = 15;
+void total(int arr[][maxSize]);
 
 int main()
 {
-    int size;
+    
+    int size = 0;
     int row;
     int col;
-    int test;
     
     cout << "Please give an odd number between 3 and 15 for the size of the Magic Square."<<endl;
     cin >> size;
@@ -38,7 +40,7 @@ int main()
     }
     
     //make the magic square
-    int ms[size][size];
+    int ms[maxSize][maxSize];
     
     //fill up with 0's, so it's "empty"
     for (int i = 0; i < size; i++)
@@ -48,6 +50,8 @@ int main()
             ms[i][j] = 0;
         }
     }
+
+    cout << ms[9][10];
     
     //start from the top mid
     row = 0;
@@ -89,7 +93,7 @@ int main()
     {
         for (int j = 0 ; j < size; j++)
         {
-            cout<<ms[i][j] << "  ";
+            cout<<ms[i][j] << "\t";
         }
         cout << "\n";
     }
@@ -150,6 +154,227 @@ int main()
         
     }
     cout << sum << endl;
+    
+    //start magic square #2
+    
+    int ms2[maxSize][maxSize];
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            ms2[size - 1 - j][i] = ms[i][j];
+        }
+    }
+    //out put Magic Square #2
+    cout << "Magic Square #2 is:" << endl;
+    for (int i = 0 ; i < size; i++)
+    {
+        for (int j = 0 ; j < size; j++)
+        {
+            cout<<ms2[i][j] << "\t";
+        }
+        cout << "\n";
+    }
+    
+    //row calculation
+    for (int r = 0; r < size; r++)
+    {
+        sum = 0;
+        for (int c = 0; c < size; c++)
+        {
+            sum += ms2[r][c];
+        }
+        sums[r]= sum;
+    }
+    cout << "Checking the sums of every row:      ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << sums [i] << " ";
+    }
+    cout << "\n";
+    
+    //column calculation
+    for (int c = 0; c < size; c++)
+    {
+        sum = 0;
+        for (int r = 0; r < size; r++)
+        {
+            sum += ms2[r][c];
+        }
+        sums[c]= sum;
+    }
+    
+    cout << "Checking the sums of every column:   ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << sums [i] << " ";
+    }
+    cout << "\n";
+    
+    //diagnoal calculation
+    cout << "Checking the sums of every diagnoal: ";
+    sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        sum += ms2[i][i];
+    }
+    cout << sum << " ";
+    
+    sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        int j = size - 1 - i;
+            sum += ms2[i][j];
+        
+    }
+    cout << sum << endl;
+    
+    //magic square #3
+    int ms3[maxSize][maxSize];
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            ms3[size - 1 - j][i] = ms2[i][j];
+        }
+    }
+    //out put Magic Square #3
+    cout << "Magic Square #3 is:" << endl;
+    for (int i = 0 ; i < size; i++)
+    {
+        for (int j = 0 ; j < size; j++)
+        {
+            cout<<ms3[i][j] << "\t";
+        }
+        cout << "\n";
+    }
+    
+    //row calculation
+    for (int r = 0; r < size; r++)
+    {
+        sum = 0;
+        for (int c = 0; c < size; c++)
+        {
+            sum += ms3[r][c];
+        }
+        sums[r]= sum;
+    }
+    cout << "Checking the sums of every row:      ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << sums [i] << " ";
+    }
+    cout << "\n";
+    
+    //column calculation
+    for (int c = 0; c < size; c++)
+    {
+        sum = 0;
+        for (int r = 0; r < size; r++)
+        {
+            sum += ms3[r][c];
+        }
+        sums[c]= sum;
+    }
+    
+    cout << "Checking the sums of every column:   ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << sums [i] << " ";
+    }
+    cout << "\n";
+    
+    //diagnoal calculation
+    cout << "Checking the sums of every diagnoal: ";
+    sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        sum += ms3[i][i];
+    }
+    cout << sum << " ";
+    
+    sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        int j = size - 1 - i;
+            sum += ms3[i][j];
+        
+    }
+    cout << sum << endl;
+    
+    //magic square #4
+    int ms4[maxSize][maxSize];
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            ms4[size - 1 - j][i] = ms3[i][j];
+        }
+    }
+    //out put Magic Square #4
+    cout << "Magic Square #4 is:" << endl;
+    for (int i = 0 ; i < size; i++)
+    {
+        for (int j = 0 ; j < size; j++)
+        {
+            cout<<ms4[i][j] << "\t";
+        }
+        cout << "\n";
+    }
+    
+    //row calculation
+    for (int r = 0; r < size; r++)
+    {
+        sum = 0;
+        for (int c = 0; c < size; c++)
+        {
+            sum += ms4[r][c];
+        }
+        sums[r]= sum;
+    }
+    cout << "Checking the sums of every row:      ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << sums [i] << " ";
+    }
+    cout << "\n";
+    
+    //column calculation
+    for (int c = 0; c < size; c++)
+    {
+        sum = 0;
+        for (int r = 0; r < size; r++)
+        {
+            sum += ms4[r][c];
+        }
+        sums[c]= sum;
+    }
+    
+    cout << "Checking the sums of every column:   ";
+    for (int i = 0; i < size; i++)
+    {
+        cout << sums [i] << " ";
+    }
+    cout << "\n";
+    
+    //diagnoal calculation
+    cout << "Checking the sums of every diagnoal: ";
+    sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        sum += ms4[i][i];
+    }
+    cout << sum << " ";
+    
+    sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        int j = size - 1 - i;
+            sum += ms4[i][j];
+        
+    }
+    cout << sum << endl;
+    
 }
 
 int checkBound(int i, int size)
@@ -166,4 +391,6 @@ int checkBound(int i, int size)
     
     return i;
 }
+
+
 
