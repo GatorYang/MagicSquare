@@ -3,14 +3,19 @@
 using namespace std;
 int checkBound(int i, int size);
 const int maxSize = 15;
-void total(int arr[][maxSize]);
 
 int main()
 {
     
     int size = 0;
+    string sizeStr;
     int row;
     int col;
+    //make the magic squares
+    int ms[maxSize][maxSize];
+    int ms2[maxSize][maxSize];
+    int ms3[maxSize][maxSize];
+    int ms4[maxSize][maxSize];
     
     cout << "Please give an odd number between 3 and 15 for the size of the Magic Square."<<endl;
     cin >> size;
@@ -39,8 +44,7 @@ int main()
         }
     }
     
-    //make the magic square
-    int ms[maxSize][maxSize];
+    
     
     //fill up with 0's, so it's "empty"
     for (int i = 0; i < size; i++)
@@ -157,7 +161,6 @@ int main()
     
     //start magic square #2
     
-    int ms2[maxSize][maxSize];
     for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j++)
@@ -230,7 +233,6 @@ int main()
     cout << sum << endl;
     
     //magic square #3
-    int ms3[maxSize][maxSize];
     for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j++)
@@ -303,7 +305,6 @@ int main()
     cout << sum << endl;
     
     //magic square #4
-    int ms4[maxSize][maxSize];
     for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j++)
