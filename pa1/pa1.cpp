@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <cmath>
 using namespace std;
 int checkBound(int i, int size);
@@ -18,19 +19,30 @@ int main()
     int ms4[maxSize][maxSize];
     
     cout << "Please give an odd number between 3 and 15 for the size of the Magic Square."<<endl;
-    cin >> size;
+    cin >> sizeStr;
     
-    while (cin.fail())
+    bool check (true);
+    bool check_digit = false;
+    while (true)
     {
-        cout << "Please input an odd interger between 3 and 15." << endl;
-        cin.clear();
-        cin.ignore(256, '\n');
-        cin >> size;
+        for (int i; i < sizeStr.size(); i ++)
+        {
+            if (!isdigit(sizeStr.at(i)))
+            {
+                cout << "Please input an odd interger between 3 and 15." << endl;
+                cin >> sizeStr;
+                check_digit = true;
+            }
+        }
+        if (!check_digit)
+        {
+            break;
+        }
     }
     
     //while loop check if size is in bound
-    bool check (false);
-    while (check == false)
+    check = false;
+    while (check)
     {
         
         //check if size is in bound
@@ -62,8 +74,6 @@ int main()
             ms[i][j] = 0;
         }
     }
-
-    cout << ms[9][10];
     
     //start from the top mid
     row = 0;
