@@ -20,6 +20,14 @@ int main()
     cout << "Please give an odd number between 3 and 15 for the size of the Magic Square."<<endl;
     cin >> size;
     
+    while (cin.fail())
+    {
+        cout << "Please input an odd interger between 3 and 15." << endl;
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> size;
+    }
+    
     //while loop check if size is in bound
     bool check (false);
     while (check == false)
@@ -28,7 +36,7 @@ int main()
         //check if size is in bound
         if (size < 3 || size > 15)
         {
-            cout <<"Input is outside of the bound, please try again."<<endl;
+            cout << "Input is outside of the bound, please try again."<<endl;
             cin >> size;
         }
         //check if size is odd
