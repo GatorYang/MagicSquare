@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <cctype>
 using namespace std;
+
 int checkBound(int i, int size);
 const int maxSize = 15;
 
@@ -10,6 +12,7 @@ int main()
     
     int size = 0;
     string sizeStr;
+    int lengStr;
     int row;
     int col;
     //make the magic squares
@@ -17,32 +20,47 @@ int main()
     int ms2[maxSize][maxSize];
     int ms3[maxSize][maxSize];
     int ms4[maxSize][maxSize];
-    
+    bool check = true;
     cout << "Please give an odd number between 3 and 15 for the size of the Magic Square."<<endl;
-    cin >> sizeStr;
+    //cin >> size;
     
-    bool check (true);
-    bool check_digit = false;
-    while (true)
+    cin >> sizeStr;
+    lengStr = sizeStr.size();
+    
+    while (sizeStr.size() > 2)
     {
-        for (int i; i < sizeStr.size(); i ++)
+        cout << "Invalid input for size, please try again." << endl;
+        cin >> sizeStr;
+        lengStr = sizeStr.size();
+    }
+    
+    while (check == true)
+    {
+        check = false;
+        for (int i = 0; i < lengStr; i ++)
         {
             if (!isdigit(sizeStr.at(i)))
             {
                 cout << "Please input an odd interger between 3 and 15." << endl;
                 cin >> sizeStr;
-                check_digit = true;
+                lengStr = sizeStr.size();
+                check = true;
+            
             }
         }
-        if (!check_digit)
-        {
-            break;
-        }
+    }
+    size = stoi(sizeStr);
+    while (cin.fail())
+    {
+        cout << "Please input an odd interger between 3 and 15." << endl;
+        cin.clear();
+        cin.ignore(256, '\n');
+        cin >> size;
     }
     
     //while loop check if size is in bound
     check = false;
-    while (check)
+    while (check == false)
     {
         
         //check if size is in bound
